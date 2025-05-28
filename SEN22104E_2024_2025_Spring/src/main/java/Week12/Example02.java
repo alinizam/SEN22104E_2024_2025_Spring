@@ -1,12 +1,11 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
-package Week12Lab;
+package Week12;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -14,19 +13,15 @@ import java.sql.Statement;
  *
  * @author ali.nizam
  */
-public class Example01 {
-
+public class Example02 {
     public static void main(String[] args) throws SQLException {
         Connection con; 
         con=DriverManager.getConnection("jdbc:mysql://localhost:3306/EmployeeDB","root","Nizam1234");
         Statement s=con.createStatement();
-        String name="Ahmet";
-        name=name+"' OR '1'='1";
-        String sql="SELECT * FROM Employee WHERE firstname='"+name+"'";
-        System.out.println(sql);
-        ResultSet rs=s.executeQuery(sql);
-        while(rs.next()){
-            System.out.println(rs.getInt("employeeId")+"-"+rs.getString(2));
-        }
+        //String sql="UPDATE employee SET salary=15000 WHERE employeeId=1";
+        //String sql="UPDATE employee SET salary=salary*2";
+        String sql="DELETE FROM employee WHERE employeeId=3";
+        int changeRecordNumber=s.executeUpdate(sql);
+        System.out.println(changeRecordNumber);
     }
 }
